@@ -1,0 +1,23 @@
+services:
+    fontsinuse-scraper:
+        image: 'santiagoale13/php:8.4-laravel-ready'
+        extra_hosts:
+            - 'host.docker.internal:host-gateway'
+        ports:
+            - '${APP_PORT:-8008}:80'
+            - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
+        volumes:
+            - '.:/var/www/html'
+        networks:
+            - debi
+        depends_on:
+            - memcached
+    memcached:
+        image: 'memcached:alpine'
+        ports:
+            - '${FORWARD_MEMCACHED_PORT:-11211}:11211'
+        networks:
+            - debi
+networks:
+    debi:
+        driver: bridge
