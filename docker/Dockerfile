@@ -16,6 +16,8 @@ ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/do
 RUN chmod +x /usr/local/bin/install-php-extensions && \
     install-php-extensions pdo_pgsql bcmath intl zip opcache pcntl gd
 
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
 # Install system dependencies
 RUN apk add --no-cache \
     curl \
