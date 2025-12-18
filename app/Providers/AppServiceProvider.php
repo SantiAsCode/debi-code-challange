@@ -11,7 +11,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(\App\Services\FontsInUseService::class, function ($app) {
+            return new \App\Services\FontsInUseService(
+                config('services.fontsinuse.username', env('FONTSINUSE_USERNAME', '')),
+                config('services.fontsinuse.password', env('FONTSINUSE_PASSWORD', ''))
+            );
+        });
     }
 
     /**

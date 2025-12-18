@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'fontsinuse' => [
+        'username' => env('FONTSINUSE_USERNAME'),
+        'password' => env('FONTSINUSE_PASSWORD'),
+    ],
+
 ];
