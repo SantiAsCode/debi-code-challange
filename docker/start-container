@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 if [ "$SUPERVISOR_PHP_USER" != "root" ] && [ "$SUPERVISOR_PHP_USER" != "sail" ]; then
-    echo "You should set SUPERVISOR_PHP_USER to either 'sail' or 'root'."
     exit 1
 fi
 
@@ -11,6 +10,11 @@ fi
 
 if [ ! -d /.composer ]; then
     mkdir /.composer
+fi
+
+if [ ! -f /var/www/html/database/database.sqlite ]; then
+    touch /var/www/html/database/database.sqlite
+    chown sail:sail /var/www/html/database/database.sqlite
 fi
 
 chmod -R ugo+rw /.composer

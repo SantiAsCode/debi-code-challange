@@ -8,7 +8,7 @@ WORKDIR /var/www/html
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=UTC
-ENV SUPERVISOR_PHP_COMMAND="/usr/local/bin/php -d variables_order=EGPCS /var/www/html/artisan serve --host=0.0.0.0 --port=80"
+ENV SUPERVISOR_PHP_COMMAND="/usr/local/bin/php -d variables_order=EGPCS /var/www/html/artisan serve --host=0.0.0.0 --port=8008"
 ENV SUPERVISOR_PHP_USER="sail"
 
 # Install dependencies and extensions
@@ -31,9 +31,6 @@ RUN apk add --no-cache \
 
 RUN mkdir -p /var/log/supervisor
 
-# Allow non-root PHP to bind to port 80
-RUN setcap "cap_net_bind_service=+ep" /usr/local/bin/php
-
 # Configure User
 RUN groupadd --force -g $WWWGROUP sail
 RUN useradd -ms /bin/bash --no-user-group -g $WWWGROUP -u 1337 sail
@@ -45,6 +42,6 @@ COPY php.ini /usr/local/etc/php/conf.d/99-sail.ini
 
 RUN chmod +x /usr/local/bin/start-container
 
-EXPOSE 80
+EXPOSE 8008
 
 ENTRYPOINT ["start-container"]
