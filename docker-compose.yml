@@ -8,6 +8,7 @@ services:
             - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
         volumes:
             - '.:/var/www/html'
+            - './docker/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf'
         networks:
             - debi
         depends_on:
