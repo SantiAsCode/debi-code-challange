@@ -1,4 +1,3 @@
-import AppLayoutTemplate from '@/layouts/app/app-sidebar-layout';
 import { type BreadcrumbItem } from '@/types';
 import { type ReactNode } from 'react';
 
@@ -7,8 +6,10 @@ interface AppLayoutProps {
     breadcrumbs?: BreadcrumbItem[];
 }
 
-export default ({ children, breadcrumbs, ...props }: AppLayoutProps) => (
-    <AppLayoutTemplate breadcrumbs={breadcrumbs} {...props}>
-        {children}
-    </AppLayoutTemplate>
+export default ({ children }: AppLayoutProps) => (
+    <div className="flex min-h-screen flex-col bg-white dark:bg-black">
+        <main className="flex-1">
+            {children}
+        </main>
+    </div>
 );
