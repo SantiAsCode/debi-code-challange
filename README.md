@@ -64,7 +64,7 @@ php artisan migrate
 > [!NOTE]  
 > Solamente necesarios la primera vez.
 
-4.  **Start the development servers**
+4.  **Iniciar la aplicación**
 ```bash
 composer run dev
 ```
