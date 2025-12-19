@@ -11,14 +11,6 @@ services:
             - './docker/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf'
         networks:
             - debi
-        depends_on:
-            - memcached
-    memcached:
-        image: 'memcached:alpine'
-        ports:
-            - '${FORWARD_MEMCACHED_PORT:-11211}:11211'
-        networks:
-            - debi
 networks:
     debi:
         driver: bridge
